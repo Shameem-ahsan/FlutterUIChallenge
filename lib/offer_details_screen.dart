@@ -3,9 +3,11 @@ import 'package:myfirstflutter/_common_widgets/text_styles.dart';
 import 'package:myfirstflutter/_shared/app_colors.dart';
 import 'package:myfirstflutter/_shared/app_constants.dart';
 import 'package:myfirstflutter/_shared/app_images.dart';
+import 'package:myfirstflutter/model/offers_list_model.dart';
 
 class OfferDetailsScreen extends StatefulWidget {
-  const OfferDetailsScreen({Key? key}) : super(key: key);
+  final OfferListModel offerListModel;
+  const OfferDetailsScreen({Key? key,required this.offerListModel}) : super(key: key);
 
   @override
   State<OfferDetailsScreen> createState() => _OfferDetailsScreenState();
@@ -15,43 +17,43 @@ class _OfferDetailsScreenState extends State<OfferDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.nikeCardBg,
+      backgroundColor: widget.offerListModel.backgroundColor,
       body: Padding(
         padding: const EdgeInsets.only(left: 20, right: 20, top: 50),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            navigationIconsView(context),
-            const SizedBox(
-              height: 40,
-            ),
-            Image.asset(
-              AppImages.nikeLogo,
-              width: 67,
-              height: 24,
-            ),
-            const SizedBox(
-              height: 40,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                titleView(),
-                offerValidityView(),
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Text(AppConstants.shoeDescription,
-                style: TextStyles.descriptionStyle),
-            const SizedBox(
-              height: 10,
-            ),
-            Image.asset(
-              AppImages.nikeShoe,
-            ),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              navigationIconsView(context),
+              const SizedBox(
+                height: 40,
+              ),
+              Image.asset(
+                widget.offerListModel.leadingImage,
+              ),
+              const SizedBox(
+                height: 40,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  titleView(),
+                  offerValidityView(),
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Text(AppConstants.shoeDescription,
+                  style: TextStyles.descriptionStyle),
+              const SizedBox(
+                height: 10,
+              ),
+              Image.asset(
+                widget.offerListModel.trailingImage,
+              ),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: roundedActionButton(),
@@ -123,7 +125,7 @@ class _OfferDetailsScreenState extends State<OfferDetailsScreen> {
         Text.rich(
           TextSpan(
             children: [
-              TextSpan(text: '20', style: TextStyles.percentageStyle),
+              TextSpan(text: widget.offerListModel.percentage, style: TextStyles.percentageStyle),
               TextSpan(
                 text: '%',
                 style: TextStyle(
@@ -134,14 +136,14 @@ class _OfferDetailsScreenState extends State<OfferDetailsScreen> {
             ],
           ),
         ),
-        Text("Nike flash sale", style: TextStyles.titleStyle),
+        Text(widget.offerListModel.title, style: TextStyles.titleStyle),
       ],
     );
   }
 
   Widget roundedActionButton() {
     return Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20, bottom: 40.0),
+      padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20.0),
       child: SizedBox(
         height: 50,
         child: MaterialButton(

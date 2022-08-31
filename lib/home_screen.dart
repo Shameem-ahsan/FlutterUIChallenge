@@ -184,6 +184,7 @@ class _HomeScreenState extends State<HomeScreen> {
       color: AppColors.categoryCircleColor,
       child: GridView.builder(
           shrinkWrap: true,
+          physics: const ScrollPhysics(),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             childAspectRatio: width / height,
             crossAxisCount: columnCount,
@@ -193,47 +194,41 @@ class _HomeScreenState extends State<HomeScreen> {
           itemCount: trendingListModel.getTrendingItems().length,
           itemBuilder: (BuildContext ctx, index) {
             final items = trendingListModel.getTrendingItems()[index];
-            return InkWell(
-              onTap: () {
-                print("click on hot deals");
-                ScreenPresenter.present(const OfferDetailsScreen(), context);
-              },
-              child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12.0),
-                    color: items.color,
-                  ),
-                  child: Stack(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Image.asset(
-                              items.image,
-                              width: 24,
-                              height: 24,
-                            ),
-                            Text(items.title,
-                                style: const TextStyle(
-                                    fontSize: 14, color: Colors.white)),
-                          ],
+            return Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12.0),
+                  color: items.color,
+                ),
+                child: Stack(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Image.asset(
+                            items.image,
+                            width: 24,
+                            height: 24,
+                          ),
+                          Text(items.title,
+                              style: const TextStyle(
+                                  fontSize: 14, color: Colors.white)),
+                        ],
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.bottomRight,
+                      child: Opacity(
+                        opacity: .3,
+                        child: Image.asset(
+                          items.image,
                         ),
                       ),
-                      Align(
-                        alignment: Alignment.bottomRight,
-                        child: Opacity(
-                          opacity: .3,
-                          child: Image.asset(
-                            items.image,
-                          ),
-                        ),
-                      )
-                    ],
-                  )),
-            );
+                    )
+                  ],
+                ));
           }),
     );
   }
@@ -269,7 +264,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   transform: Matrix4.identity()..scale(scale, scale),
                   child: InkWell(
                     onTap: () {
-                      ScreenPresenter.present(const OfferDetailsScreen(), buildContext);
+                      ScreenPresenter.present(OfferDetailsScreen(offerListModel: items), buildContext);
                     },
                     child: Container(
                       margin: const EdgeInsets.only(left: 10, right: 10),
@@ -387,6 +382,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             GridView.builder(
                 shrinkWrap: true,
+                physics: const ScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   childAspectRatio: width / height,
                   crossAxisCount: columnCount,
