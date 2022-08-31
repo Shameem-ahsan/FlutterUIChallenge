@@ -59,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 10),
             hotDealsView(),
             titleView(AppConstants.myCoupons),
-            offerListView(),
+            offerListView(context),
             const SizedBox(
               height: 10,
             ),
@@ -238,7 +238,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget offerListView() {
+  Widget offerListView(BuildContext buildContext) {
     return SizedBox(
       height: 400,
       child: ListView.builder(
@@ -269,8 +269,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   transform: Matrix4.identity()..scale(scale, scale),
                   child: InkWell(
                     onTap: () {
-                      print("testtt");
-                      ScreenPresenter.present(const OfferDetailsScreen(), context);
+                      ScreenPresenter.present(const OfferDetailsScreen(), buildContext);
                     },
                     child: Container(
                       margin: const EdgeInsets.only(left: 10, right: 10),

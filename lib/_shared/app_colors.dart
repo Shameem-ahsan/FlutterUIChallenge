@@ -31,6 +31,12 @@ class AppColors {
   static final Color bakeryCardBg = getColorFromHex("#B25827");
   static final Color meatCardBg= getColorFromHex("#FED504");
 
+
+  //offer details
+  static final Color blue = getColorFromHex("#273C71");
+  static final Color descriptionColor = getColorFromHex("#272B31");
+  static final Color orange = getColorFromHex("#E63C2E");
+
   
   //MARK: Util function to convert hex string to color
   static Color getColorFromHex(String hexColor) {

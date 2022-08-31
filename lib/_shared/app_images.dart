@@ -41,4 +41,9 @@ class AppImages {
   static const String meat = "assets/images/meat.png";
   static const String bakery = "assets/images/bakery.png";
 
+
+  //details Screen
+  static const String back = "assets/images/back.png";
+  static const String share = "assets/images/share.png";
+
 }
