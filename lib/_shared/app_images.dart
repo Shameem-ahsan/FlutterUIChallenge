@@ -6,6 +6,14 @@ class AppImages {
 
   //home screen
 
+  static const String pizzaHut = "assets/images/pizza_hut.png";
+  static const String pizza = "assets/images/pizza.jpg";
+
+  static const String hotOffer = "assets/images/hot_offer.png";
+  static const String nearBy = "assets/images/nearby.png";
+  static const String mostRedeem = "assets/images/most_redeem.png";
+  static const String newArrival = "assets/images/new_arrival.png";
+
   //category List Images
   static const String restaurant = "assets/images/restaurant.png";
   static const String travel = "assets/images/travel.png";
@@ -25,5 +33,12 @@ class AppImages {
   static const String nikeShoe = "assets/images/nike_shoe.png";
   static const String careerFourLogo = "assets/images/career4logo.png";
   static const String fridge = "assets/images/fridge.png";
+
+
+  //fresh food List Images
+  static const String fruits = "assets/images/fruits.png";
+  static const String vegetables = "assets/images/vegetables.png";
+  static const String meat = "assets/images/meat.png";
+  static const String bakery = "assets/images/bakery.png";
 
 }
