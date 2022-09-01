@@ -235,7 +235,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget offerListView(BuildContext buildContext) {
     return SizedBox(
-      height: 400,
+      height: 300,
       child: ListView.builder(
         padding:
             const EdgeInsets.only(top: 30, bottom: 20, left: 10, right: 10.0),
@@ -264,7 +264,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   transform: Matrix4.identity()..scale(scale, scale),
                   child: InkWell(
                     onTap: () {
-                      ScreenPresenter.present(OfferDetailsScreen(offerListModel: items), buildContext);
+                      //ScreenPresenter.present(OfferDetailsScreen(offerListModel: items), buildContext);
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => OfferDetailsScreen(offerListModel: items)));
+
                     },
                     child: Container(
                       margin: const EdgeInsets.only(left: 10, right: 10),
@@ -435,45 +437,26 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void addOffersListValues() {
-    offerItems.add(OfferListModel(
+    offerItems.add(OfferListModel(1,
         "McDonald weekend offer",
         "50%",
         AppImages.mcDonaldLogo,
         AppImages.mcDonaldFries,
         AppColors.mcDonaldCardBg));
-    offerItems.add(OfferListModel("Nike flash sale", "40%", AppImages.nikeLogo,
+    offerItems.add(OfferListModel(2,"Nike flash sale", "40%", AppImages.nikeLogo,
         AppImages.nikeShoe, AppColors.nikeCardBg));
-    offerItems.add(OfferListModel("KFC birthday offer", "20%",
+    offerItems.add(OfferListModel(3,"KFC birthday offer", "20%",
         AppImages.kfcLogo, AppImages.kfcChicken, AppColors.kfcCardBg));
-    offerItems.add(OfferListModel(
+    offerItems.add(OfferListModel(4,
         "Carrerfour Day",
         "30%",
         AppImages.careerFourLogo,
         AppImages.fridge,
         AppColors.carrerFourCardBg));
-    offerItems.add(OfferListModel("Expo 2020 dubai UAE", "70%",
+    offerItems.add(OfferListModel(5,"Expo 2020 dubai UAE", "70%",
         AppImages.expoLogo, AppImages.expoDubai, AppColors.expoCardBg));
-    offerItems.add(OfferListModel("Apple Offer", "25%", AppImages.appleLogo,
+    offerItems.add(OfferListModel(6,"Apple Offer", "25%", AppImages.appleLogo,
         AppImages.iphoneBundle, AppColors.appleCardBg));
-    offerItems.add(OfferListModel(
-        "McDonald weekend offer",
-        "50%",
-        AppImages.mcDonaldLogo,
-        AppImages.mcDonaldFries,
-        AppColors.mcDonaldCardBg));
-    offerItems.add(OfferListModel("Nike flash sale", "40%", AppImages.nikeLogo,
-        AppImages.nikeShoe, AppColors.nikeCardBg));
-    offerItems.add(OfferListModel("KFC birthday offer", "20%",
-        AppImages.kfcLogo, AppImages.kfcChicken, AppColors.kfcCardBg));
-    offerItems.add(OfferListModel(
-        "Carrerfour Day",
-        "30%",
-        AppImages.careerFourLogo,
-        AppImages.fridge,
-        AppColors.carrerFourCardBg));
-    offerItems.add(OfferListModel("Expo 2020 dubai UAE", "70%",
-        AppImages.expoLogo, AppImages.expoDubai, AppColors.expoCardBg));
-    offerItems.add(OfferListModel("Apple Offer", "25%", AppImages.appleLogo,
-        AppImages.iphoneBundle, AppColors.appleCardBg));
+
   }
 }

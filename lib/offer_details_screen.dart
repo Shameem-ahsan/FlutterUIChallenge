@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart' show timeDilation;
 import 'package:myfirstflutter/_common_widgets/text_styles.dart';
 import 'package:myfirstflutter/_shared/app_colors.dart';
 import 'package:myfirstflutter/_shared/app_constants.dart';
@@ -7,7 +8,9 @@ import 'package:myfirstflutter/model/offers_list_model.dart';
 
 class OfferDetailsScreen extends StatefulWidget {
   final OfferListModel offerListModel;
-  const OfferDetailsScreen({Key? key,required this.offerListModel}) : super(key: key);
+
+  const OfferDetailsScreen({Key? key, required this.offerListModel})
+      : super(key: key);
 
   @override
   State<OfferDetailsScreen> createState() => _OfferDetailsScreenState();
@@ -16,6 +19,7 @@ class OfferDetailsScreen extends StatefulWidget {
 class _OfferDetailsScreenState extends State<OfferDetailsScreen> {
   @override
   Widget build(BuildContext context) {
+    timeDilation = 3;
     return Scaffold(
       backgroundColor: widget.offerListModel.backgroundColor,
       body: Padding(
@@ -47,10 +51,13 @@ class _OfferDetailsScreenState extends State<OfferDetailsScreen> {
               Text(AppConstants.shoeDescription,
                   style: TextStyles.descriptionStyle),
               const SizedBox(
-                height: 10,
+                height: 30,
               ),
-              Image.asset(
-                widget.offerListModel.trailingImage,
+              Hero(
+                tag: "${widget.offerListModel.id}",
+                child: Image.asset(
+                  widget.offerListModel.trailingImage,
+                ),
               ),
             ],
           ),
@@ -65,7 +72,7 @@ class _OfferDetailsScreenState extends State<OfferDetailsScreen> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         InkWell(
-          onTap:()=>{ Navigator.pop(buildContext)},
+          onTap: () => {Navigator.pop(buildContext)},
           child: Image.asset(
             AppImages.back,
             width: 22,
@@ -125,7 +132,9 @@ class _OfferDetailsScreenState extends State<OfferDetailsScreen> {
         Text.rich(
           TextSpan(
             children: [
-              TextSpan(text: widget.offerListModel.percentage, style: TextStyles.percentageStyle),
+              TextSpan(
+                  text: widget.offerListModel.percentage,
+                  style: TextStyles.percentageStyle),
               TextSpan(
                 text: '%',
                 style: TextStyle(
