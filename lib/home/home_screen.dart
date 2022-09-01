@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:myfirstflutter/_common_widgets/appBar.dart';
-import 'package:myfirstflutter/_common_widgets/screen_presenter.dart';
 import 'package:myfirstflutter/_common_widgets/text_styles.dart';
 import 'package:myfirstflutter/_shared/app_colors.dart';
 import 'package:myfirstflutter/_shared/app_constants.dart';
 import 'package:myfirstflutter/_shared/app_images.dart';
+import 'package:myfirstflutter/details_screen/offer_details_screen.dart';
+import 'package:myfirstflutter/details_screen/page_view_holder.dart';
 import 'package:myfirstflutter/model/category_list_model.dart';
 import 'package:myfirstflutter/model/food_list_model.dart';
 import 'package:myfirstflutter/model/offers_list_model.dart';
 import 'package:myfirstflutter/model/trending_list_model.dart';
-import 'package:myfirstflutter/offer_details_screen.dart';
-import 'package:myfirstflutter/splash_screen.dart';
+import 'package:flutter/scheduler.dart' show timeDilation;
 
 const itemSize = 150.0;
 
@@ -48,6 +48,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    timeDilation = 3;
+
     return Scaffold(
       appBar: CustomAppBar(),
       body: SingleChildScrollView(
@@ -265,8 +267,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: InkWell(
                     onTap: () {
                       //ScreenPresenter.present(OfferDetailsScreen(offerListModel: items), buildContext);
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => OfferDetailsScreen(offerListModel: items)));
-
+                      //Navigator.push(context, MaterialPageRoute(builder: (context) => OfferDetailsScreen(offerListModel: items)));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => PageViewHolder(items:offerItems,indexOfItem: index,)));
                     },
                     child: Container(
                       margin: const EdgeInsets.only(left: 10, right: 10),
@@ -285,7 +287,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               color: AppColors.dropShadow.withOpacity(.160),
                               blurRadius: 4,
                               spreadRadius: 0,
-                              offset: Offset(0, -10) // changes position of shadow
+                              offset:
+                                  Offset(0, -10) // changes position of shadow
                               ),
                         ],
                       ),
@@ -297,11 +300,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: [
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Image.asset(
                                         items.leadingImage,
@@ -313,7 +318,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                       Text(items.title,
                                           style: const TextStyle(
-                                              fontSize: 14, color: Colors.black)),
+                                              fontSize: 14,
+                                              color: Colors.black)),
                                     ],
                                   ),
                                   Text(items.percentage,
@@ -437,26 +443,27 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void addOffersListValues() {
-    offerItems.add(OfferListModel(1,
+    offerItems.add(OfferListModel(
+        1,
         "McDonald weekend offer",
         "50%",
         AppImages.mcDonaldLogo,
         AppImages.mcDonaldFries,
         AppColors.mcDonaldCardBg));
-    offerItems.add(OfferListModel(2,"Nike flash sale", "40%", AppImages.nikeLogo,
-        AppImages.nikeShoe, AppColors.nikeCardBg));
-    offerItems.add(OfferListModel(3,"KFC birthday offer", "20%",
+    offerItems.add(OfferListModel(2, "Nike flash sale", "40%",
+        AppImages.nikeLogo, AppImages.nikeShoe, AppColors.nikeCardBg));
+    offerItems.add(OfferListModel(3, "KFC birthday offer", "20%",
         AppImages.kfcLogo, AppImages.kfcChicken, AppColors.kfcCardBg));
-    offerItems.add(OfferListModel(4,
+    offerItems.add(OfferListModel(
+        4,
         "Carrerfour Day",
         "30%",
         AppImages.careerFourLogo,
         AppImages.fridge,
         AppColors.carrerFourCardBg));
-    offerItems.add(OfferListModel(5,"Expo 2020 dubai UAE", "70%",
+    offerItems.add(OfferListModel(5, "Expo 2020 dubai UAE", "70%",
         AppImages.expoLogo, AppImages.expoDubai, AppColors.expoCardBg));
-    offerItems.add(OfferListModel(6,"Apple Offer", "25%", AppImages.appleLogo,
+    offerItems.add(OfferListModel(6, "Apple Offer", "25%", AppImages.appleLogo,
         AppImages.iphoneBundle, AppColors.appleCardBg));
-
   }
 }

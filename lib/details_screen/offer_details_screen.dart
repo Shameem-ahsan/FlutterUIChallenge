@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart' show timeDilation;
 import 'package:myfirstflutter/_common_widgets/text_styles.dart';
 import 'package:myfirstflutter/_shared/app_colors.dart';
 import 'package:myfirstflutter/_shared/app_constants.dart';
@@ -19,7 +18,7 @@ class OfferDetailsScreen extends StatefulWidget {
 class _OfferDetailsScreenState extends State<OfferDetailsScreen> {
   @override
   Widget build(BuildContext context) {
-    timeDilation = 3;
+    //timeDilation = 3;
     return Scaffold(
       backgroundColor: widget.offerListModel.backgroundColor,
       body: Padding(

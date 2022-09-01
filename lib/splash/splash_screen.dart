@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:myfirstflutter/_shared/app_colors.dart';
 import 'package:myfirstflutter/_shared/app_images.dart';
 import 'package:myfirstflutter/_common_widgets/screen_presenter.dart';
-import 'package:myfirstflutter/home_screen.dart';
+import 'package:myfirstflutter/home/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
